@@ -352,7 +352,7 @@ int main(int, char**)
 
     // Create window with Vulkan context
     glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
-    GLFWwindow* window = glfwCreateWindow(1280, 720, "Dear ImGui GLFW+Vulkan example", NULL, NULL);
+    GLFWwindow* window = glfwCreateWindow(1280, 720, "IDE Hydra", NULL, NULL);
     if (!glfwVulkanSupported())
     {
         printf("GLFW: Vulkan Not Supported\n");
@@ -496,8 +496,7 @@ int main(int, char**)
         loginReg();
 
         // Create a window
-        ImGui::Begin("My name is window, ImGUI window");
-
+        ImGui::Begin("Compiler");
         // Add a multi-row input field
         static char inputText[1024 * 16] = { 0 };
         ImGui::InputTextMultiline("##input", inputText, IM_ARRAYSIZE(inputText), ImVec2(-1.0f, ImGui::GetTextLineHeight() * 10));
