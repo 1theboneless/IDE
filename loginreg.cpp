@@ -8,6 +8,7 @@
 #include <algorithm>
 #include "Registration.h"
 #include "Login.h"
+#include <thread>
 
 using namespace std;
 
@@ -75,7 +76,7 @@ int loginReg()
         ImGui::Text("Input Email");
         ImGui::SetCursorPosX(center_x - ImGui::CalcTextSize("Input Username", NULL, true).x);
         ImGui::SetNextItemWidth(200);
-        ImGui::InputText("##email", inputemail, CHAR_MAX, ImGuiInputTextFlags_Password);
+        ImGui::InputText("##email", inputemail, CHAR_MAX);
         ImGui::SetCursorPosX(center_x - ImGui::CalcTextSize("Input Password", NULL, true).x * 0.5);
         ImGui::Text("Input Password");
         ImGui::SetCursorPosX(center_x - ImGui::CalcTextSize("Input Password", NULL, true).x);
@@ -127,7 +128,7 @@ if (show_registration_form)
         ImGui::Text("Input Email");
         ImGui::SetCursorPosX(center_x - ImGui::CalcTextSize("Input Username", NULL, true).x);
         ImGui::SetNextItemWidth(200);
-        ImGui::InputText("##regemail", inputemail, CHAR_MAX, ImGuiInputTextFlags_Password);
+        ImGui::InputText("##regemail", inputemail, CHAR_MAX);
         ImGui::SetCursorPosX(center_x - ImGui::CalcTextSize("Input Password", NULL, true).x * 0.5);
         ImGui::Text("Input Password");
         ImGui::SetCursorPosX(center_x - ImGui::CalcTextSize("Input Password", NULL, true).x);
@@ -150,7 +151,8 @@ if (show_registration_form)
         {
             if (string(inputpassword) == string(inputconfpass))
             {
-                Registration(inputusername, inputemail, inputpassword);
+                thread t1(Registration, inputusername, inputemail, inputpassword);
+                t1.detach();
                 show_registration_form = false;
                 show_login_form = true;
             }
