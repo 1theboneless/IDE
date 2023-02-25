@@ -1,7 +1,6 @@
 #ifndef REGISTRATION_H
 #define REGISTRATION_H
 
-void Registration(const char* inputusername, const char* inputemail, const char* inputpassword);
-int getRegistrationOutput();
+int registrationOutput(const char* inputusername, const char* inputemail, const char* inputpassword);
 
 #endif 

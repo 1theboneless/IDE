@@ -152,7 +152,7 @@ if (show_registration_form)
         {
             if (string(inputpassword) == string(inputconfpass))
             {
-                thread t1(Registration, inputusername, inputemail, inputpassword);
+                thread t1(registrationOutput, inputusername, inputemail, inputpassword);
                 t1.detach();
                 show_registration_form = false;
                 show_login_form = true;

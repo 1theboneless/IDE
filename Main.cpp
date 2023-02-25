@@ -294,7 +294,8 @@ static void FramePresent(ImGui_ImplVulkanH_Window* wd)
 }
 
 // Main code
-    int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
+    //int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
+    int main()
     {
         glfwSetErrorCallback(glfw_error_callback);
         if (!glfwInit())
@@ -423,7 +424,6 @@ static void FramePresent(ImGui_ImplVulkanH_Window* wd)
            /* ImGui::End();*/
             loginReg();
             compiler();
-            getRegistrationOutput();
             ImGui::Render();
             ImDrawData* draw_data = ImGui::GetDrawData();
             const bool is_minimized = (draw_data->DisplaySize.x <= 0.0f || draw_data->DisplaySize.y <= 0.0f);
