@@ -6,21 +6,25 @@
 #include <glfw/include/GLFW/glfw3.h>
 #include <string>
 #include <algorithm>
+#include "Registration.h"
 
 using namespace std;
 
 string username;
 string password;
+string email;
 string confirmpass;
+char inputemail[CHAR_MAX];
 char inputusername[CHAR_MAX];
 char inputpassword[CHAR_MAX];
 char inputconfpass[CHAR_MAX];
 
-extern bool show_registration_form = false;
-extern bool show_login_form = true;
+bool show_registration_form = false;
+bool show_login_form = true;
 
 int chartostr()
 {
+    string inpes = string(inputemail);
     string inpus = string(inputusername);
     string inpas = string(inputpassword);
     string inconpas = string(inputconfpass);
@@ -66,6 +70,11 @@ int loginReg()
         ImGui::SetCursorPosX(center_x - ImGui::CalcTextSize("Input Username", NULL, true).x);
         ImGui::SetNextItemWidth(200);
         ImGui::InputText("##usernameinput", inputusername, CHAR_MAX);
+        ImGui::SetCursorPosX(center_x - ImGui::CalcTextSize("Input Email", NULL, true).x * 0.5);
+        ImGui::Text("Input Email");
+        ImGui::SetCursorPosX(center_x - ImGui::CalcTextSize("Input Username", NULL, true).x);
+        ImGui::SetNextItemWidth(200);
+        ImGui::InputText("##email", inputemail, CHAR_MAX, ImGuiInputTextFlags_Password);
         ImGui::SetCursorPosX(center_x - ImGui::CalcTextSize("Input Password", NULL, true).x * 0.5);
         ImGui::Text("Input Password");
         ImGui::SetCursorPosX(center_x - ImGui::CalcTextSize("Input Password", NULL, true).x);
@@ -102,52 +111,50 @@ int loginReg()
         ImGui::PopStyleVar(2);
     }
 if (show_registration_form)
-{
-    ImGui::PushStyleVar(ImGuiStyleVar_FrameRounding, 5.0f);
-    ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 5.0f);
-ImGui::SetCursorPosX(center_x - ImGui::CalcTextSize("Input Username", NULL, true).x * 0.5);
-ImGui::Text("Input Username");
-ImGui::SetCursorPosX(center_x - ImGui::CalcTextSize("Input Username", NULL, true).x);
-ImGui::SetNextItemWidth(200);
-ImGui::InputText("##regusernameinput", inputusername, CHAR_MAX);
-ImGui::SetCursorPosX(center_x - ImGui::CalcTextSize("Input Password", NULL, true).x * 0.5);
-ImGui::Text("Input Password");
-ImGui::SetCursorPosX(center_x - ImGui::CalcTextSize("Input Password", NULL, true).x);
-ImGui::SetNextItemWidth(200);
-ImGui::InputText("##regpassword", inputpassword, CHAR_MAX, ImGuiInputTextFlags_Password);
-ImGui::SetCursorPosX(center_x - ImGui::CalcTextSize("Confirm password", NULL, true).x * 0.5);
-ImGui::Text("Confirm password");
-ImGui::SetCursorPosX(center_x - ImGui::CalcTextSize("Input Password", NULL, true).x);
-ImGui::SetNextItemWidth(200);
-ImGui::InputText("##confirmpass", inputconfpass, CHAR_MAX, ImGuiInputTextFlags_Password);
-ImGui::SetCursorPosX(center_x - ImGui::CalcTextSize("Cancel", NULL, true).x * 0.55);
+    {
+        ImGui::PushStyleVar(ImGuiStyleVar_FrameRounding, 5.0f);
+        ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 5.0f);
+        ImGui::SetCursorPosX(center_x - ImGui::CalcTextSize("Input Username", NULL, true).x * 0.5);
+        ImGui::Text("Input Username");
+        ImGui::SetCursorPosX(center_x - ImGui::CalcTextSize("Input Username", NULL, true).x);
+        ImGui::SetNextItemWidth(200);
+        ImGui::InputText("##regusernameinput", inputusername, CHAR_MAX);
+        ImGui::SetCursorPosX(center_x - ImGui::CalcTextSize("Input Email", NULL, true).x * 0.5);
+        ImGui::Text("Input Email");
+        ImGui::SetCursorPosX(center_x - ImGui::CalcTextSize("Input Username", NULL, true).x);
+        ImGui::SetNextItemWidth(200);
+        ImGui::InputText("##regemail", inputemail, CHAR_MAX, ImGuiInputTextFlags_Password);
+        ImGui::SetCursorPosX(center_x - ImGui::CalcTextSize("Input Password", NULL, true).x * 0.5);
+        ImGui::Text("Input Password");
+        ImGui::SetCursorPosX(center_x - ImGui::CalcTextSize("Input Password", NULL, true).x);
+        ImGui::SetNextItemWidth(200);
+        ImGui::InputText("##regpassword", inputpassword, CHAR_MAX, ImGuiInputTextFlags_Password);
+        ImGui::SetCursorPosX(center_x - ImGui::CalcTextSize("Confirm password", NULL, true).x * 0.5);
+        ImGui::Text("Confirm password");
+        ImGui::SetCursorPosX(center_x - ImGui::CalcTextSize("Input Password", NULL, true).x);
+        ImGui::SetNextItemWidth(200);
+        ImGui::InputText("##confirmpass", inputconfpass, CHAR_MAX, ImGuiInputTextFlags_Password);
+        ImGui::SetCursorPosX(center_x - ImGui::CalcTextSize("Cancel", NULL, true).x * 0.55);
 
-if (ImGui::Button("Cancel"))
-{
-show_registration_form = false;
-show_login_form = true;
-}
-bool showText = false;
-if (showText)
-{
-    ImGui::Text("Registation Completed!");
-}
-ImGui::SetCursorPosX(center_x - ImGui::CalcTextSize("Input Password", NULL, true).x);
-if (ImGui::Button("Register", ImVec2(200, 50)))
-{
-if (string(inputpassword) == string(inputconfpass))
-{
-username = string(inputusername);
-password = string(inputpassword);
-show_registration_form = false;
-show_login_form = true;
-showText = true;
-}
-else
-{
-std::cout << "Registration Failed: Passwords do not match." << std::endl;
-}
-}
+        if (ImGui::Button("Cancel"))
+        {
+            show_registration_form = false;
+            show_login_form = true;
+        }
+        ImGui::SetCursorPosX(center_x - ImGui::CalcTextSize("Input Password", NULL, true).x);
+        if (ImGui::Button("Register", ImVec2(200, 50)))
+        {
+            if (string(inputpassword) == string(inputconfpass))
+            {
+                Registration(inputusername, inputemail, inputpassword);
+                show_registration_form = false;
+                show_login_form = true;
+            }
+            else
+            {
+                std::cout << "Registration Failed: Passwords do not match." << std::endl;
+            }
+        }
 ImGui::PopStyleVar(2);
 }
 

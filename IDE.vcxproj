@@ -28,6 +28,8 @@
     <ClCompile Include="imgui\imgui_widgets.cpp" />
     <ClCompile Include="loginreg.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="MainMenu.cpp" />
+    <ClCompile Include="Registration.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\glfw-3.3.8.bin.WIN64\glfw-3.3.8.bin.WIN64\include\GLFW\glfw3.h" />
@@ -44,6 +46,7 @@
     <ClInclude Include="imgui\imstb_truetype.h" />
     <ClInclude Include="logreg.h" />
     <ClInclude Include="mainmenu.h" />
+    <ClInclude Include="Registration.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

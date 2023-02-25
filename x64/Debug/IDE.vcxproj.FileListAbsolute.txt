@@ -1,2 +1,3 @@
 C:\Start-up\IDE\x64\Debug\IDE.exe
 C:\Users\stormz\Desktop\IDE\x64\Debug\IDE.exe
+C:\Start-up\IDE new\IDE\x64\Debug\IDE.exe

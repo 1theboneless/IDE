@@ -20,4 +20,5 @@ int compiler()
     ImGui::Button("Submit", ImVec2(200, 20));
     ImGui::PopStyleColor();
     ImGui::End();
+    return 1;
 }

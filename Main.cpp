@@ -418,6 +418,7 @@ int main(int, char**)
        /* }*/
        /* ImGui::End();*/
         loginReg();
+        compiler();
         ImGui::Render();
         ImDrawData* draw_data = ImGui::GetDrawData();
         const bool is_minimized = (draw_data->DisplaySize.x <= 0.0f || draw_data->DisplaySize.y <= 0.0f);
