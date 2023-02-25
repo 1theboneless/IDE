@@ -3,7 +3,7 @@
 #include "imgui_impl_vulkan.h"
 #include <string.h>
 #include <iostream>
-#include <GLFW/glfw3.h>
+#include <glfw/include/GLFW/glfw3.h>
 #include <string>
 #include <algorithm>
 
@@ -16,8 +16,8 @@ char inputusername[CHAR_MAX];
 char inputpassword[CHAR_MAX];
 char inputconfpass[CHAR_MAX];
 
-bool show_registration_form = false;
-bool show_login_form = true;
+extern bool show_registration_form = false;
+extern bool show_login_form = true;
 
 int chartostr()
 {
@@ -72,18 +72,29 @@ int loginReg()
         ImGui::SetNextItemWidth(200);
         ImGui::InputText("##password", inputpassword, CHAR_MAX, ImGuiInputTextFlags_Password);
         ImGui::SetCursorPosX(center_x - ImGui::CalcTextSize("Register", NULL, true).x * 0.55);
-
+        bool showText = false;
+        if (showText)
+        {
+            ImGui::Text("Registation Completed!");
+        }
         if (ImGui::Button("Register"))
         {
             show_login_form = false;
             show_registration_form = true;
         }
+        bool isPasswordCorrect = false;
         ImGui::SetCursorPosX(center_x - ImGui::CalcTextSize("Input Password", NULL, true).x);
         if (ImGui::Button("Log In", ImVec2(200, 50)))
         {
             if (strcmp() == 1)
             {
                 ImGui::Text("%s", text.c_str());
+                isPasswordCorrect = true;
+            }
+            if (strcmp() == 0)
+            {
+                ImGui::Text("%s", text.c_str());
+                isPasswordCorrect = false;
             }
         }
 
@@ -116,6 +127,11 @@ if (ImGui::Button("Cancel"))
 show_registration_form = false;
 show_login_form = true;
 }
+bool showText = false;
+if (showText)
+{
+    ImGui::Text("Registation Completed!");
+}
 ImGui::SetCursorPosX(center_x - ImGui::CalcTextSize("Input Password", NULL, true).x);
 if (ImGui::Button("Register", ImVec2(200, 50)))
 {
@@ -125,6 +141,7 @@ username = string(inputusername);
 password = string(inputpassword);
 show_registration_form = false;
 show_login_form = true;
+showText = true;
 }
 else
 {
