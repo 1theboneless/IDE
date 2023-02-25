@@ -9,6 +9,7 @@
 #include "Registration.h"
 #include "Login.h"
 #include <thread>
+#include <Windows.h>
 
 using namespace std;
 
