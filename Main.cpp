@@ -13,6 +13,7 @@
 #include <thread>
 #include <windows.h>
 #include <Windows.h>
+#include "Registration.h"
 
 #if defined(_MSC_VER) && (_MSC_VER >= 1900) && !defined(IMGUI_DISABLE_WIN32_FUNCTIONS)
 #pragma comment(lib, "legacy_stdio_definitions")
@@ -422,6 +423,7 @@ static void FramePresent(ImGui_ImplVulkanH_Window* wd)
            /* ImGui::End();*/
             loginReg();
             compiler();
+            getRegistrationOutput();
             ImGui::Render();
             ImDrawData* draw_data = ImGui::GetDrawData();
             const bool is_minimized = (draw_data->DisplaySize.x <= 0.0f || draw_data->DisplaySize.y <= 0.0f);

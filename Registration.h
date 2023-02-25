@@ -2,5 +2,6 @@
 #define REGISTRATION_H
 
 void Registration(const char* inputusername, const char* inputemail, const char* inputpassword);
+int getRegistrationOutput();
 
 #endif 
