@@ -54,6 +54,9 @@
     <ClCompile Include="Registration.cpp">
       <Filter>Исходные файлы\imgui</Filter>
     </ClCompile>
+    <ClCompile Include="Login.cpp">
+      <Filter>Исходные файлы\imgui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imgui\imconfig.h">
@@ -99,6 +102,9 @@
       <Filter>Исходные файлы</Filter>
     </ClInclude>
     <ClInclude Include="Registration.h">
+      <Filter>Файлы заголовков\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="Login.h">
       <Filter>Файлы заголовков\imgui</Filter>
     </ClInclude>
   </ItemGroup>

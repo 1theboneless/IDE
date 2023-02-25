@@ -7,6 +7,7 @@
 #include <string>
 #include <algorithm>
 #include "Registration.h"
+#include "Login.h"
 
 using namespace std;
 
@@ -95,6 +96,9 @@ int loginReg()
         ImGui::SetCursorPosX(center_x - ImGui::CalcTextSize("Input Password", NULL, true).x);
         if (ImGui::Button("Log In", ImVec2(200, 50)))
         {
+            Login(inputusername, inputemail, inputpassword);
+            show_registration_form = false;
+            show_login_form = true;
             if (strcmp() == 1)
             {
                 ImGui::Text("%s", text.c_str());
