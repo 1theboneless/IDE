@@ -1,3 +1,3 @@
-# IDE
+# Mirage official IDE
 
-under development
+Under development
