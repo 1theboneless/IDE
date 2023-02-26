@@ -1,89 +1,35 @@
-#include <iostream>
 #include <cstdio>
+#include <iostream>
+#include <memory>
+#include <stdexcept>
 #include <string>
-#include <windows.h>
+#include <array>
+#include <stdio.h>
+#include <atlstr.h>
+#include <stdexcept>
 
-using namespace std;
-
-int registrationOutput(const char* inputusername, const char* inputemail, const char* inputpassword)
+void registrationOutput(const char* inputusername, const char* inputemail, const char* inputpassword)
 {
-    string password = "\"44SA+&rnMz#4P7cas%+f@3)3#nB66CCE\"";
-    string command = "register.exe " + string(inputusername) + " " + string(inputemail) + " " + string(inputpassword) + " " + password;
+    std::string username = inputusername;
+    std::string email = inputemail;
+    std::string pass = inputpassword;
 
-    // Convert the command to a wide character string
-    int wlen = MultiByteToWideChar(CP_UTF8, 0, command.c_str(), -1, NULL, 0);
-    if (wlen == 0) {
-        cerr << "Error: Failed to convert command to wide character string." << endl;
-        return 1;
+    std::string password = "\"44SA+&rnMz#4P7cas%+f@3)3#nB66CCE\"";
+    std::string command = "register.exe " + username + " " + email + " " + pass + " " + password;
+
+    // Open a pipe to the command line and execute the command
+    std::array<char, 256> buffer;
+    std::string result = "";
+    FILE* pipe = _popen(command.c_str(), "r");
+    if (!pipe) throw std::runtime_error("popen() failed!");
+    while (fgets(buffer.data(), buffer.size(), pipe) != nullptr) {
+        result += buffer.data();
     }
-    wchar_t* wcommand = new wchar_t[wlen];
-    if (MultiByteToWideChar(CP_UTF8, 0, command.c_str(), -1, wcommand, wlen) == 0) {
-        cerr << "Error: Failed to convert command to wide character string." << endl;
-        delete[] wcommand;
-        return 1;
-    }
-
-    SECURITY_ATTRIBUTES sa;
-    sa.nLength = sizeof(sa);
-    sa.lpSecurityDescriptor = NULL;
-    sa.bInheritHandle = TRUE;
-
-    HANDLE hReadPipe, hWritePipe;
-    if (!CreatePipe(&hReadPipe, &hWritePipe, &sa, 0)) {
-        cerr << "Error: Failed to create pipe." << endl;
-        delete[] wcommand;
-        return 1;
+    int exitCode = _pclose(pipe);
+    if (exitCode != 0) {
+        std::cerr << "Error executing command. errno=" << errno << ", exit code=" << exitCode << std::endl;
     }
 
-    STARTUPINFO si;
-    ZeroMemory(&si, sizeof(si));
-    si.cb = sizeof(si);
-    si.hStdError = hWritePipe;
-    si.hStdOutput = hWritePipe;
-    si.dwFlags |= STARTF_USESTDHANDLES;
-
-    PROCESS_INFORMATION pi;
-    ZeroMemory(&pi, sizeof(pi));
-
-    if (!CreateProcess(NULL, wcommand, NULL, NULL, TRUE, 0, NULL, NULL, &si, &pi)) {
-        cerr << "Error: Failed to create process." << endl;
-        CloseHandle(hReadPipe);
-        CloseHandle(hWritePipe);
-        delete[] wcommand;
-        return 1;
-    }
-
-    CloseHandle(pi.hThread);
-
-    // Close the write end of the pipe so we can read from the read end
-    CloseHandle(hWritePipe);
-
-    // Read the output of the command
-    char buffer[128];
-    string result = "";
-    DWORD bytesRead;
-    while (ReadFile(hReadPipe, buffer, sizeof(buffer), &bytesRead, NULL) && bytesRead != 0) {
-        result.append(buffer, bytesRead);
-    }
-
-    // Close the read end of the pipe
-    CloseHandle(hReadPipe);
-
-    // Wait for the process to exit
-    WaitForSingleObject(pi.hProcess, INFINITE);
-
-    // Get the exit code of the process
-    DWORD exitCode;
-    if (!GetExitCodeProcess(pi.hProcess, &exitCode))
-    {
-        cerr << "Error: Failed to get exit code." << endl;
-    }
-    else
-    {
-        cout << "Success registration " << exitCode << "." << endl;
-    }
-
-    // Close the process and thread handles
-    CloseHandle(pi.hProcess);
-    return 1;
+    // Print the output of the command
+    std::cout << result << std::endl;
 }

@@ -28,7 +28,7 @@
     <ClCompile Include="imgui\imgui_widgets.cpp" />
     <ClCompile Include="Login.cpp" />
     <ClCompile Include="loginreg.cpp" />
-    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="Registration.cpp" />
   </ItemGroup>
