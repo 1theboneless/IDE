@@ -5,7 +5,7 @@
 #include <string>
 #include <array>
 #include <stdio.h>
-#include <atlstr.h>
+//#include <atlstr.h>
 #include <stdexcept>
 
 void registrationOutput(const char* inputusername, const char* inputemail, const char* inputpassword)

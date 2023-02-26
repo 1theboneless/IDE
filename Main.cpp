@@ -303,7 +303,7 @@ static void FramePresent(ImGui_ImplVulkanH_Window* wd)
 
         // Create window with Vulkan context
         glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
-        GLFWwindow* window = glfwCreateWindow(1920, 1080, "IDE Hydra", NULL, NULL);
+        GLFWwindow* window = glfwCreateWindow(1920, 1080, "IDE Mirage", NULL, NULL);
         if (!glfwVulkanSupported())
         {
             printf("GLFW: Vulkan Not Supported\n");
@@ -323,7 +323,6 @@ static void FramePresent(ImGui_ImplVulkanH_Window* wd)
         glfwGetFramebufferSize(window, &w, &h);
         ImGui_ImplVulkanH_Window* wd = &g_MainWindowData;
         SetupVulkanWindow(wd, surface, w, h);
-
         // Setup Dear ImGui context
         IMGUI_CHECKVERSION();
         ImGui::CreateContext();
@@ -345,8 +344,6 @@ static void FramePresent(ImGui_ImplVulkanH_Window* wd)
         init_info.Allocator = g_Allocator;
         init_info.CheckVkResultFn = check_vk_result;
         ImGui_ImplVulkan_Init(&init_info, wd->RenderPass);
-
-
         //io.Fonts->AddFontDefault();
         /*io.Fonts->AddFontFromFileTTF("c:\\Windows\\Fonts\\segoeui.ttf", 18.0f);*/
         //io.Fonts->AddFontFromFileTTF("../../misc/fonts/DroidSans.ttf", 16.0f);
