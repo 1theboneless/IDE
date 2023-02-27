@@ -4,5 +4,6 @@
 
 int loginReg();
 int strcmp();
+static ImFont* custom_font = nullptr;
 
 #endif

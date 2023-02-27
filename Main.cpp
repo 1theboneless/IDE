@@ -344,13 +344,15 @@ static void FramePresent(ImGui_ImplVulkanH_Window* wd)
         init_info.Allocator = g_Allocator;
         init_info.CheckVkResultFn = check_vk_result;
         ImGui_ImplVulkan_Init(&init_info, wd->RenderPass);
-        //io.Fonts->AddFontDefault();
-        /*io.Fonts->AddFontFromFileTTF("c:\\Windows\\Fonts\\segoeui.ttf", 18.0f);*/
-        //io.Fonts->AddFontFromFileTTF("../../misc/fonts/DroidSans.ttf", 16.0f);
-       /* io.Fonts->AddFontFromFileTTF("../../misc/fonts/Roboto-Medium.ttf", 16.0f);*/
-        //io.Fonts->AddFontFromFileTTF("../../misc/fonts/Cousine-Regular.ttf", 15.0f);
-        //ImFont* font = io.Fonts->AddFontFromFileTTF("c:\\Windows\\Fonts\\ArialUni.ttf", 18.0f, NULL, io.Fonts->GetGlyphRangesJapanese());
-        //IM_ASSERT(font != NULL);
+        io.Fonts->AddFontDefault();
+       /* io.Fonts->AddFontFromFileTTF("c:\\Windows\\Fonts\\segoeui.ttf", 18.0f);
+        io.Fonts->AddFontFromFileTTF("../../misc/fonts/DroidSans.ttf", 16.0f);
+        io.Fonts->AddFontFromFileTTF("../../misc/fonts/Roboto-Medium.ttf", 16.0f);
+        io.Fonts->AddFontFromFileTTF("../../misc/fonts/Cousine-Regular.ttf", 15.0f);*/
+      /*  static ImFont* custom_font = nullptr;
+        ImFontAtlas* font_atlas = ImGui::GetIO().Fonts;
+        custom_font = font_atlas->AddFontFromFileTTF("../../fonts/Roboto-Medium.ttf", 16.0f);
+        IM_ASSERT(font_atlas != NULL);*/
 
         // Upload Fonts
         {
