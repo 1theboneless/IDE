@@ -212,7 +212,7 @@ int loginReg()
                 ImGui::Dummy(ImVec2(0, 1));
                 ImGui::SetCursorPosX(input_start_x);
                 ImGui::SetNextItemWidth(input_width);
-                ImGui::InputTextWithHint("##confirmpass", "Confirm Password..", inputpassword, 32, ImGuiInputTextFlags_EnterReturnsTrue);
+                ImGui::InputTextWithHint("##confirmpass", "Confirm Password..", inputconfpass, 32, ImGuiInputTextFlags_EnterReturnsTrue);
             }
             ImGui::PopStyleVar(2);
             ImGui::PopStyleColor(2);
