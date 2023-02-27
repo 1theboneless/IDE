@@ -400,15 +400,21 @@ static void FramePresent(ImGui_ImplVulkanH_Window* wd)
                     ImGui_ImplVulkanH_CreateOrResizeWindow(g_Instance, g_PhysicalDevice, g_Device, &g_MainWindowData, g_QueueFamily, g_Allocator, width, height, g_MinImageCount);
                     g_MainWindowData.FrameIndex = 0;
                     g_SwapChainRebuild = false;
+                    
                 }
+                
             }
+
             ImGui_ImplVulkan_NewFrame();
             ImGui_ImplGlfw_NewFrame();
             ImGui::NewFrame();
             {
                 static float f = 0.0f;
                 static int counter = 0;
+                
             }
+            loginReg();
+            compiler();
             /*bool signUpButtonPressed = false;
             ImGui::Begin("Compi");
             if (ImGui::Button("Sign Up"))
@@ -421,8 +427,7 @@ static void FramePresent(ImGui_ImplVulkanH_Window* wd)
                 loginReg();
            /* }*/
            /* ImGui::End();*/
-            loginReg();
-            compiler();
+
             ImGui::Render();
             ImDrawData* draw_data = ImGui::GetDrawData();
             const bool is_minimized = (draw_data->DisplaySize.x <= 0.0f || draw_data->DisplaySize.y <= 0.0f);

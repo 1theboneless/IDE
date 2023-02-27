@@ -52,8 +52,7 @@ int loginReg()
 {
 
     string text = "Hello World!";
-    //ImGui::SetNextWindowSize(ImVec2(ImGui::GetWindowWidth(), ImGui::GetWindowHeight()));
-    ImGui::SetNextWindowPos(ImVec2(ImGui::GetIO().DisplaySize.x / 2, ImGui::GetIO().DisplaySize.y / 2), ImGuiCond_Appearing, ImVec2(0.5f, 0.5f));
+    ImGui::SetNextWindowPos(ImVec2(ImGui::GetIO().DisplaySize.x / 2 - 316, ImGui::GetIO().DisplaySize.y / 2 - 180), ImGuiCond_Always);
     ImGuiWindowFlags flags = ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoBringToFrontOnFocus;
     float center_x = ImGui::GetWindowWidth() * 0.5;
     bool open = true;
@@ -64,8 +63,7 @@ int loginReg()
     ImGui::SetNextWindowSize(ImVec2(633.0f, 360.0f));
     ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 2.0f);
     ImGui::Begin("Login", &open, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoScrollbar);
-    ImGuiWindowFlags;
-    
+
     
     
     /*ImGui::BeginChild("Loginwindow");*/
